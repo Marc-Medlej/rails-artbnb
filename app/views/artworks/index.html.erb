@@ -1,9 +1,16 @@
 <h1>Artbnb</h1>
 <%= link_to "Create new artwork", new_artwork_path, class: "btn btn-secondary"%>
 <br>
-<p>~~~~see below~~~</p>
+<p class="text-center p-2">A list of art that can be yours for short-term</p>
 
-
-<% @artworks.each do |artwork| %>
-    <a><%= link_to artwork.name, artwork_path(artwork)%></a>   
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+      <% @artworks.each do |artwork| %>
+        <div class="card mb-4" style="background-image: url(https://source.unsplash.com/random)">
+       <a><%= link_to artwork.name, artwork_path(artwork)%></a>
+      <% end %>
+        </div>
+      </div>
+  </div>
+</div>
