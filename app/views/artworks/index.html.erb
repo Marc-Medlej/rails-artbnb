@@ -1,0 +1,9 @@
+<h1>Artbnb</h1>
+<%= link_to "Create new artwork", new_artwork_path, class: "btn btn-secondary"%>
+<br>
+<p>~~~~see below~~~</p>
+
+
+<% @artworks.each do |artwork| %>
+    <a><%= link_to artwork.name, artwork_path(artwork)%></a>   
+<% end %>
