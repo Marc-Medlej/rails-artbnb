@@ -1,29 +1,72 @@
 // Specific CSS for your home-page
 
+$peach: #F17A7E;
 
 .nav-bar {
   width: 1440px;
   height: 114px;
-  left: 0px;
-  top: 0px;
   background: #F9FAF4;
 }
 
 .logo {
-  position: absolute;
   width: 104px;
   height: 104px;
-  left: 19px;
-  top: 5px;
   background: white;
 }
 
 .card {
-  position: absolute;
   width: 250px;
   height: 250px;
-  left: 49px;
-  top: 251px;
-
   background: #F17A7E;
 }
+
+.create-button {
+  background-color: $peach;
+  border-radius: 4px;
+  color: white;
+}
+
+.text-link {
+
+  background-color: white;
+  padding: 4px;
+  border-radius: 4px;
+  font-family: futura;
+  & a {
+  text-decoration: none;
+  }
+}
+
+.card-product {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+
