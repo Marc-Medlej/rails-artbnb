@@ -6,7 +6,7 @@
     <div class="col-8">
       <p class="text-center p-2">Short-term hire of fabulous art</p>
     </div>
-    <div class="col-2 create-button sticky-top text-center">
+    <div class="col-2 create-button text-center">
       <%= link_to "Add artwork for hire", new_artwork_path, class: "btn"%>
     </div>
   </div>
@@ -14,29 +14,20 @@
 
 <div class="container">
   <div class="row">
-  <% @artworks.each do |artwork| %>
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-      <%= link_to artwork_path(artwork) do %>
-      <div class="card-product flex-container space-between m-3 p-3">
-        <img src="https://source.unsplash.com/random"/>
-
-          <div class="card-product-infos">
-            <h2><%= link_to artwork.name, artwork_path(artwork)%></h2>
-            <ul>
-            <li><p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p></li>
-            <li><p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per/day</p></li>
-            <li><p><i class="fas fa-compass"></i> <%= artwork.location %></p></li>
-            <li><p><i class="fas fa-th-list"></i> <%= artwork.description %></p></li>
-          </ul>
-          </div>
-
-          <div class="create-button p-1">
-            <h3>Book</h3>
-          </div>
-
+    <% @artworks.each do |artwork| %>
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="card-product flex-container space-between m-3 p-3">
+          <%= link_to "", artwork_path(artwork), class: "card-link"%>
+          <img src="https://source.unsplash.com/random"/>
+            <div class="card-product-infos">
+              <h2> <%= artwork.name %> </h2>
+              <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
+              <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
+              <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
+            </div>
+           <%= link_to "Book", new_artwork_booking_path(artwork), class: "create-button p-1" %>
         </div>
       </div>
-      <% end %>
-  <% end %>
+    <% end %>
   </div>
 </div>
