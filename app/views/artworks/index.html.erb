@@ -22,10 +22,12 @@
 
           <div class="card-product-infos">
             <h2><%= link_to artwork.name, artwork_path(artwork)%></h2>
-            <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
-            <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
-            <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
-            <p><i class="fas fa-th-list"></i> <%= artwork.description %></p>
+            <ul>
+            <li><p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p></li>
+            <li><p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per/day</p></li>
+            <li><p><i class="fas fa-compass"></i> <%= artwork.location %></p></li>
+            <li><p><i class="fas fa-th-list"></i> <%= artwork.description %></p></li>
+          </ul>
           </div>
 
           <div class="create-button p-1">
