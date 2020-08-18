@@ -24,8 +24,9 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])  
     @booking.update({'status': params[:status]})
 
+    @artwork = @booking.artwork
+
     redirect_to artwork_path(@artwork)
-    raise
   end
 
   private
