@@ -88,7 +88,6 @@ a.create-button {
 .card-product .card-product-infos {
   padding: 16px;
   position: relative;
-  overflow: auto;
   height: 100%;
   flex-grow: 1;
   & a {
@@ -97,23 +96,27 @@ a.create-button {
   }
 }
 
+.background-red {
+  background-color: red;
+  padding: 4px;
+}
+
+.background-yellow {
+  background-color: yellow;
+  padding: 4px;
+}
+
+.background-green {
+  background-color: green;
+  padding: 4px;
+}
+
 .container-show {
   display: flex;
   text-align: center;
   justify-content: center;
   text-align: center;
 }
-
-// .banner {
-//   text-align: center;
-//   display: flex;
-//   justify-content: space-around;
-//   border-radius: 16px;
-//   border: 1px solid #ddd;
-//   padding: 15px;
-//    width: 46px;
-//   height: 44px;
-// }
 
 .image {
   border-radius: 16px;
@@ -137,4 +140,3 @@ a.create-button {
   justify-content: center;
   text-align: center;
 }
-
