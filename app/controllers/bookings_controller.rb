@@ -16,13 +16,16 @@ class BookingsController < ApplicationController
     redirect_to artwork_path(@artwork)
   end
 
-  def edit
-    @booking = Booking.find(params[:id])
-  end
+  # def edit
+  #   @booking = Booking.find(params[:id])
+  # end
 
   def update
-    @booking = Booking.find(params[:id])
-    @booking.update(strong_params)
+    @booking = Booking.find(params[:id])  
+    @booking.update({'status': params[:status]})
+
+    @artwork = @booking.artwork
+
     redirect_to artwork_path(@artwork)
   end
 
