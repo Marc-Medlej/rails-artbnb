@@ -24,26 +24,31 @@ $peach: #F17A7E;
   background-color: $peach;
   border-radius: 4px;
   color: white;
-}
-
-.text-link {
-
-  background-color: white;
-  padding: 4px;
-  border-radius: 4px;
-  font-family: futura;
-  & a {
-  text-decoration: none;
+  &:hover {
+  background-color: #FFC94B;
   }
 }
 
 .card-product {
-  overflow: hidden;
-  height: 120px;
+  height: 200px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  overflow: hidden;
+  &.create-button {
+    padding: 8px;
+  }
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+.space-between {
+  justify-content: space-between;
 }
 
 .card-product img {
@@ -55,18 +60,23 @@ $peach: #F17A7E;
 .card-product h2 {
   font-size: 16px;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 8px;
 }
 
 .card-product p {
   font-size: 12px;
-  line-height: 1.4;
+  line-height: 2;
   opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .card-product .card-product-infos {
   padding: 16px;
+    position: relative;
+  overflow: scroll;
+  height: 100%;
+  & a {
+    text-decoration: none;
+    color: black;
+  }
 }
-
