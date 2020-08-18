@@ -1,0 +1,8 @@
+<%= simple_form_for([@artwork,@booking]) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  
+  <%= f.input :time_start %>
+  <%= f.input :time_end%>
+  <%= f.submit %>
+<% end %>
