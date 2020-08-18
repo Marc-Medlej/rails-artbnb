@@ -36,13 +36,7 @@ a.create-button {
   }
 
 .card-product {
-  border-radius: 16px;
-  border: 1px solid #ddd;
-  padding: 15px;
-
-  justify-content: space-around;
   height: 200px;
-  width: 350px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -102,16 +96,6 @@ a.create-button {
     color: black;
   }
 }
-
-.container {
-  flex-grow: 1;
-  grid-template-columns: 1fr 1fr 1fr;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  justify-content: space-around;
-}
-
 
 .container-show {
   display: flex;
