@@ -1,10 +1,19 @@
-<h1><%= @artwork.name %></h1>
-<ul>
-    <li>artist_name: <%=@artwork.artist_name%><li>
-    <li>description: <%=@artwork.description%><li>
-    <li>location: <%=@artwork.location%><li>
-    <li>price_per_day: <%=@artwork.price_per_day%><li>
-</ul>
+<div class="container-show">
+    <h1><strong><%= @artwork.name %></strong></h1>
+  </div>
+    <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'airbnb'%>)">
+    </div>
+      <div class="description">
+    <ul>
+    <li><strong>Artist name:</strong> <%=@artwork.artist_name%></li>
+    <li><strong>Description:</strong> <%=@artwork.description%></li>
+    <li><strong>Location: </strong><%=@artwork.location%></li>
+    <li><strong>Price per day: </strong><%=@artwork.price_per_day%> £</li>
+   </ul>
+<%= link_to 'Back', root_path, class: "class: btn btn-warning" %>
+<%= link_to 'Request a booking', root_path, class: "class: btn btn-danger" %>
+</div>
+</div>
 
 <% @bookings.each do |booking|  %>
 <li> user: <%= booking.user.first_name %> <%= booking.user.last_name %> <%= link_to "Accept", booking_path(booking, status: "Accepted"), method: :patch %> <%= link_to "Decline", booking_path(booking, status: "Declined"), method: :patch %>
