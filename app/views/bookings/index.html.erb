@@ -1,0 +1,35 @@
+<div class="conatiner justify-content-start p-2">
+  <div class="row m-2">
+    <div class="col-2">
+      <h1>Artbnb</h1>
+    </div>
+    <div class="col-8">
+      <p class="text-center p-2">Your bookings</p>
+    </div>
+    <div class="col-2 create-button sticky-top text-center">
+      <%= link_to "Add a booking",  new_artwork_booking_path, class: "btn"%>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+  <% @bookins.each do |booking| %>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <%= link_to booking_path(booking) do %>
+      <div class="card-product flex-container space-between m-3 p-3">
+        <img src="https://source.unsplash.com/random"/>
+
+          <div class="card-product-infos">
+            <h2><%= link_to booking.name, booking_path(booking)%></h2>
+            <p><i class="fas fa-user-alt"></i> <%= booking.status %></p>
+            <p><i class="fas fa-pound-sign"></i> <%= booking.time_start %></p>
+            <p><i class="fas fa-compass"></i> <%= booking.time_end %></p>
+            <p><i class="fas fa-th-list"></i> <%= booking.calculated_price %></p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  <% end %>
+  </div>
+</div>
