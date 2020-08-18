@@ -18,5 +18,5 @@
 <% @bookings.each do |booking|  %>
 <li> user: <%= booking.user.first_name %> <%= booking.user.last_name %> <%= link_to "Accept", booking_path(booking, status: "Accepted"), method: :patch %> <%= link_to "Decline", booking_path(booking, status: "Declined"), method: :patch %>
 <% end %>
-<%= link_to 'Back', root_path %>
+<!-- <%= link_to 'Back', root_path %> -->
 <%# , time_start: booking.time_start, time_end: booking.time_end, calculated_price: booking.calculated_price %>
