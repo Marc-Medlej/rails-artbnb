@@ -1,24 +1,21 @@
-<%= simple_form_for([@artwork,@booking]) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  
-  <%= f.input :time_start %>
-  <%= f.input :time_end%>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <%= simple_form_for @booking, url: artwork_bookings_path(@artwork),
+    method: :post,
+    wrapper: :inline_form,
+    html: { class: "form-inline" },
+    wrapper_mappings: {
+      boolean: :inline_boolean
+    } do |f| %>
 
-<form>
-  <div class="form-row align-items-center">
-    <div class="col-auto">
-      <label class="sr-only" for="time_start">Start Date</label>
-      <input type="date" class="form-control mb-2" id="time_start">
-    </div>
-    <div class="col-auto">
-      <label class="sr-only" for="time_end">End Date</label>
-      <input type="date" class="form-control" id="time_end">
-    </div>
-    <div class="col-auto">
-      <button type="submit" class="btn btn-primary mb-2">Submit</button>
-    </div>
-  </div>
-</form>
+    <%= f.input :time_start, label: "From", input_html: { class: "mb-2 mr-sm-2" } %>
+
+    <%= f.input :time_end, label: "To", input_html: { class: "mb-2 mr-sm-2" } %>
+
+    <%= f.button :submit, class: "btn-primary mb-2" %>
+
+  <% end %>
+</div>
+
+<span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
+<p>Total Price</p><div id="full-price"></div>
+
