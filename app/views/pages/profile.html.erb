@@ -7,14 +7,12 @@
     </div>
   </div>
 </div>
-
 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Bookings</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">My Artwork</a>
   </div>
 </nav>
-
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
     <div class="container mt-2">
@@ -24,7 +22,9 @@
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
               <div class="card-product flex-container space-between m-3 p-3">
                 <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
-                <img src="https://source.unsplash.com/random"/>
+                <% if booking.artwork.photo.attached? %>
+                  <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
+                <% end %>
                 <div class="card-product-infos">
                   <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
                   <% if booking.status == "Accepted" %>
@@ -44,7 +44,6 @@
       </div>
     </div>
   </div>
-
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     <div class="container mt-2">
       <h2>My Pending Requests for Artwork</h2>
@@ -55,7 +54,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                   <div class="card-product flex-container space-between p-3">
                     <%#= link_to "", artwork_path(artwork), class: "card-link"%>
-                    <img src="https://source.unsplash.com/random"/>
+                   <% if booking.artwork.photo.attached? %>
+                  <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
+                <% end %>
                       <div class="card-product-infos">
                         <p> User: <%= booking.user.first_name %> <%= booking.user.last_name %> </p>
                         <p> From: <%= booking.time_start %> Until: <%= booking.time_end %> </p>
@@ -92,33 +93,30 @@
           <% end %>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="container mt-2">
+    <div class="container mt-2">
     <h2>My Artwork</h2>
       <div class="row">
         <% @artworks.each do |artwork| %>
-          <% artwork.bookings.each do |booking| %>
-            <% if booking.status != "pending" %>
               <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <div class="card-product flex-container space-between m-3 p-3">
                   <%= link_to "", artwork_path(artwork), class: "card-link"%>
-                    <img src="https://source.unsplash.com/random"/>
+                    <% if artwork.photo.attached? %>
+                  <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
+                <% end %>
                       <div class="card-product-infos">
-                        <p> User: <%= booking.user.first_name %> <%= booking.user.last_name %> </p>
-                        <p> From: <%= booking.time_start %> Until: <%= booking.time_end %> </p>
-                        <p> Payment: £<%= booking.calculated_price %> </p>
+                         <%= link_to artwork.name, artwork_path(artwork) %>
+                        <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
+                        <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
+                        <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
                       </div>
                 </div>
               </div>
-            <% end %>
-          <% end %>
+
         <% end %>
       </div>
+    </div>
   </div>
 </div>
-
 
 
 
