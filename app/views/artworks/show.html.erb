@@ -2,7 +2,11 @@
   <h1><strong><%= @artwork.name %></strong></h1>
 </div>
 
-<div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'airbnb'%>)">
+  <% if @artwork.photo.attached? %>
+    <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @artwork.photo.key, height: 250, width: 250, crop: :fill  %>)">
+  <% end %>
+
+
 </div>
 
 <div class="description">
