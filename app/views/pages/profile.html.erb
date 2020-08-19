@@ -5,17 +5,15 @@
     <div class="col-8">
       <h1 class="text-center p-2">My Profile</h1>
     </div>
-  <div class="col-2 create-button text-center">
-      <%= link_to "Add artwork for hire", new_artwork_path, class: "btn"%>
-    </div>
   </div>
 </div>
 
-<div class="container m-3 p-2">
+<div class="container">
+
   <h2>My Bookings</h2>
     <div class="row">
       <% @bookings.each do |booking| %>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
           <div class="card-product flex-container space-between m-3 p-3">
               <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
             <img src="https://source.unsplash.com/random"/>
@@ -38,11 +36,13 @@
   </div>
 </div>
 
-<div class="container m-3 p-2">
+
+<div class="container">
+
   <h2>My Artwork</h2>
   <div class="row">
     <% @artworks.each do |artwork| %>
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
         <div class="card-product flex-container space-between m-3 p-3">
           <%#= link_to "", artwork_path(artwork), class: "card-link"%>
           <img src="https://source.unsplash.com/random"/>
@@ -70,8 +70,8 @@
                       <li> Payment: £<%= booking.calculated_price %> </li>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= link_to "Decline", booking_path(booking, status: "Declined"), method: :patch %></button>
-                      <button type="button" class="btn btn-primary"><%= link_to "Accept", booking_path(booking, status: "Accepted"), method: :patch %></button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= link_to "Decline", profile_path(booking, status: "Declined"), method: :patch %></button>
+                      <button type="button" class="btn btn-primary"><%= link_to "Accept", profile_path(booking, status: "Accepted"), method: :patch %></button>
                     </div>
                   </div>
                 </div>
