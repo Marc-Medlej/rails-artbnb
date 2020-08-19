@@ -8,6 +8,10 @@ class ArtworksController < ApplicationController
   def show
     @artwork = Artwork.find(params[:id])
     @bookings = @artwork.bookings
+    @markers = [{
+      lat: @artwork.latitude,
+      lng: @artwork.longitude
+    }]
   end
 
   def new
