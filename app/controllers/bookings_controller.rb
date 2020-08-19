@@ -21,12 +21,12 @@ class BookingsController < ApplicationController
   # end
 
   def update
-    @booking = Booking.find(params[:id])  
+    @booking = Booking.find(params[:id])
     @booking.update({'status': params[:status]})
 
     @artwork = @booking.artwork
 
-    redirect_to artwork_path(@artwork)
+    redirect_to profile_path
   end
 
   private
