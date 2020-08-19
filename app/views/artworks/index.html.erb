@@ -14,9 +14,11 @@
       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
         <div class="card-product flex-container space-between m-3 p-3">
           <%= link_to "", artwork_path(artwork), class: "card-link"%>
-          <img src="https://source.unsplash.com/random"/>
+           <% if artwork.photo.attached? %>
+                <%= cl_image_tag artwork.photo.key, height: 300, width: 400, crop: :fill %>
+              <% end %>
             <div class="card-product-infos">
-              <h2> <%= artwork.name %> </h2>
+            <%= link_to artwork.name, artwork_path(artwork) %>
               <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
               <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
               <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
