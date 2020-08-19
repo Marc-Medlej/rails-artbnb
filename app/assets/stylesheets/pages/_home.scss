@@ -29,6 +29,12 @@ $peach: #F17A7E;
   }
 }
 
+a.create-button {
+  text-decoration: none;
+  color:black;
+  z-index: 2;
+  }
+
 .card-product {
   height: 200px;
   background: white;
@@ -36,8 +42,17 @@ $peach: #F17A7E;
   display: flex;
   align-items: center;
   overflow: hidden;
+  position: relative;
   &.create-button {
     padding: 8px;
+  }
+  .card-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
   }
 }
 
@@ -72,14 +87,60 @@ $peach: #F17A7E;
 
 .card-product .card-product-infos {
   padding: 16px;
-    position: relative;
-  overflow: scroll;
+  position: relative;
   height: 100%;
+  flex-grow: 1;
   & a {
     text-decoration: none;
     color: black;
   }
 }
+
 .redbg {
   background-color: white;
+
+
+.background-red {
+  background-color: red;
+  padding: 4px;
+}
+
+.background-yellow {
+  background-color: yellow;
+  padding: 4px;
+}
+
+.background-green {
+  background-color: green;
+  padding: 4px;
+}
+
+.container-show {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.image {
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 250px;
+  height: 250px;
+  justify-content: center;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.description {
+  justify-content: center;
+  // text-align: center;
+  // display: center;
+  padding-left: 370px;
+}
+
+.container-logo {
+  justify-content: center;
+  text-align: center;
 }

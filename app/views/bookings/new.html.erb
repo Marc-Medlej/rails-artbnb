@@ -1,0 +1,17 @@
+<div class="container">
+  <%= simple_form_for @booking, url: artwork_bookings_path(@artwork),
+    method: :post,
+    wrapper: :inline_form,
+    html: { class: "form-inline" },
+    wrapper_mappings: {
+      boolean: :inline_boolean
+    } do |f| %>
+
+    <%= f.input :time_start, label: "From", input_html: { class: "mb-2 mr-sm-2" } %>
+
+    <%= f.input :time_end, label: "To", input_html: { class: "mb-2 mr-sm-2" } %>
+
+    <%= f.button :submit, class: "btn-primary mb-2" %>
+
+  <% end %>
+</div>
