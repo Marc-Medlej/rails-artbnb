@@ -22,3 +22,18 @@
   background-color: green;
   padding: 4px;
 }
+
+.create-button-delete {
+  background-color: $peach;
+  border-radius: 25%;
+  color: white;
+  &:hover {
+  background-color: #FFC94B;
+  }
+}
+
+a.create-button-delete {
+  text-decoration: none;
+  color:black;
+  z-index: 2;
+  }
