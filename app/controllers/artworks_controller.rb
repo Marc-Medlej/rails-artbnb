@@ -21,7 +21,7 @@ class ArtworksController < ApplicationController
     @markers = [{
       lat: @artwork.latitude,
       lng: @artwork.longitude,
-      infoWindow: render_to_string(partial: "info_window", locals: { artwork: artwork })
+      infoWindow: render_to_string(partial: "info_window", locals: { artwork: @artwork })
     }]
   end
 
