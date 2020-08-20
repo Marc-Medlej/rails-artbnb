@@ -18,20 +18,18 @@
 
     <div class="col-6">
       <div class="bd-highlight align-self-center border p-3 bg-light">
+      <%= simple_form_for Booking.new, url: artwork_bookings_path(@artwork),
+        method: :post,
+        wrapper_mappings: {
+        boolean: :inline_boolean
+        } do |f| %>
+        <%= f.input :time_start, label: "Pick-up",  as: :string, required: true, input_html: {class: "datepicker"} %>
+        <%= f.input :time_end, label: "Drop-off", as: :string, required: true, input_html: {class: "datepicker"} %>
+        <%= f.button :submit, class: "btn-primary mb-2" %>
+      <% end %>
 
-        <%= simple_form_for Booking.new, url: artwork_bookings_path(@artwork),
-          method: :post,
-          wrapper_mappings: {
-          boolean: :inline_boolean
-          } do |f| %>
-          <%= f.input :time_start, label: "From", input_html: { class: "mb-2 mr-sm-2" } %>
-          <%= f.input :time_end, label: "To", input_html: { class: "mb-2 mr-sm-2" } %>
-          <%= f.button :submit, class: "btn-primary mb-2" %>
-        <% end %>
-
-        <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
-        <p>Estimated Price: £<span id="full-price"></span></p>
-      </div>
+      <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
+      <p>Estimated Price: £<span id="full-price"></span></p>
     </div>
   </div>
 </div>
@@ -50,14 +48,3 @@
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
-
-
-
-
-
-
-
-
-
-
-

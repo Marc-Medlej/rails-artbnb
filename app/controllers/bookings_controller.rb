@@ -29,6 +29,12 @@ class BookingsController < ApplicationController
     redirect_to profile_path
   end
 
+  def destroy
+    @booking = @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to profile_path
+  end
+
   private
 
   def strong_params

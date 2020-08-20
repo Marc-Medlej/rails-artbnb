@@ -1,8 +1,7 @@
 <% if artwork.photo.attached? %>
-<%= cl_image_tag artwork.photo.key, height: 300, width: 400, crop: :fill %>
+<%= cl_image_tag artwork.photo.key, width: 190, crop: :scale %>
 <% end %>
                 <%# <div class="card-product-infos"> %>
 <%= link_to artwork.name, artwork_path(artwork) %>
 <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
 <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
-<p><i class="fas fa-compass"></i> <%= artwork.location %></p>
