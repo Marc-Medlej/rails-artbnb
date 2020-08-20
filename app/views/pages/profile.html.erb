@@ -23,6 +23,11 @@
           <div class="card-body">
               <h2>Pending</h2>
                 <div class="row">
+                  <% if current_user.artwork_bookings.where(status: "pending").empty? %>
+                    <div class="col-4">
+                    <p><em>Nothing to show</em></p>
+                    </div>
+                  <% else %>
                   <% @bookings.each do |booking| %>
                   <% if booking.status == "pending" %>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -40,12 +45,13 @@
                           <% else %>
                             <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
                           <% end %>
-                          <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
-                          <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
+                          <p><i class="fas fa-calendar-times"></i> <%= booking.time_start.strftime("%d/%m/%Y") %></p>
+                          <p><i class="far fa-calendar-times"></i> <%= booking.time_end.strftime("%d/%m/%Y") %></p>
                           <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
                         </div>
                       </div>
                     </div>
+                   <% end %>
                    <% end %>
                   <% end %>
                 </div>
@@ -65,6 +71,11 @@
           <div class="card-body">
             <h2>Accepted</h2>
                 <div class="row">
+                  <% if current_user.artwork_bookings.where(status: "Accepted").empty? %>
+                    <div class="col-4">
+                      <p><em>Nothing to show</em></p>
+                    </div>
+                  <% else %>
                   <% @bookings.each do |booking| %>
                     <% if booking.status == "Accepted" %>
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -82,13 +93,17 @@
                             <% else %>
                               <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
                             <% end %>
-                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
-                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
+                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start.strftime("%d/%m/%Y") %></p>
+                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end.strftime("%d/%m/%Y") %></p>
                             <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
                           </div>
+                          <%= link_to booking_path(booking), method: :delete, data: { confirm: "Delete #{booking.artwork.name.capitalize}?" }, class: "create-button-delete p-2" do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
                         </div>
                     </div>
                     <% end %>
+                  <% end %>
                   <% end %>
                 </div>
           </div>
@@ -107,6 +122,11 @@
           <div class="card-body">
             <h2>Declined</h2>
                 <div class="row">
+                  <% if current_user.artwork_bookings.where(status: "Declined").empty? %>
+                    <div class="col-4">
+                      <p><em>Nothing to show</em></p>
+                    </div>
+                  <% else %>
                   <% @bookings.each do |booking| %>
                     <% if booking.status == "Declined" %>
                       <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -124,13 +144,17 @@
                             <% else %>
                               <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
                             <% end %>
-                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
-                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
+                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start.strftime("%d/%m/%Y") %></p>
+                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end.strftime("%d/%m/%Y") %></p>
                             <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
                           </div>
+                          <%= link_to booking_path(booking), method: :delete, data: { confirm: "Delete #{booking.artwork.name.capitalize}?" }, class: "create-button-delete p-2" do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
                         </div>
                       </div>
                    <% end %>
+                  <% end %>
                   <% end %>
               </div>
           </div>
@@ -140,8 +164,8 @@
   </div>
 
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <div class="container mt-3">
-      <h2>My Pending Requests for Artwork</h2>
+    <div class="container mt-4">
+      <h2>Pending Requests for Artwork</h2>
         <div class="row">
 
           <% if current_user.artwork_bookings.where(status: "pending").empty? %>
@@ -152,7 +176,7 @@
             <% current_user.artwork_bookings.each do |booking| %>
               <% if booking.status == "pending" %>
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                  <div class="card-product flex-container space-between p-3">
+                  <div class="card-product flex-container space-between p-3 m-3">
                     <%#= link_to "", artwork_path(artwork), class: "card-link"%>
                     <% if booking.artwork.photo.attached? %>
                       <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
@@ -175,7 +199,7 @@
                               </div>
                             <div class="modal-body">
                               <li> User: <%= booking.user.first_name %> <%= booking.user.last_name %> </li>
-                              <li> From: <%= booking.time_start %> Until: <%= booking.time_end %> </li>
+                              <li> From: <%= booking.time_start.strftime("%d/%m/%Y") %> Until: <%= booking.time_end.strftime("%d/%m/%Y") %> </li>
                               <li> Payment: £<%= booking.calculated_price %> </li>
                             </div>
                             <div class="modal-footer">
@@ -194,7 +218,6 @@
           <% end %>
         </div>
 
-    <div class="container mt-2">
     <h2>My Artwork</h2>
       <div class="row">
         <% @artworks.each do |artwork| %>
@@ -202,19 +225,22 @@
                 <div class="card-product flex-container space-between m-3 p-3">
                   <%= link_to "", artwork_path(artwork), class: "card-link"%>
                     <% if artwork.photo.attached? %>
-                  <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
-                <% end %>
+                      <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
+                    <% end %>
                       <div class="card-product-infos">
                          <%= link_to artwork.name, artwork_path(artwork) %>
                         <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
                         <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
                         <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
                       </div>
+                       <%= link_to artwork_path(artwork), method: :delete, data: { confirm: "Delete #{artwork.name.capitalize}?" }, class: "create-button-delete p-2" do %>
+                      <i class="fas fa-trash-alt"></i>
+                      <% end %>
+
                 </div>
               </div>
         <% end %>
       </div>
     </div>
-  </div>
 </div>
 </div>
