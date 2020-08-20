@@ -23,7 +23,7 @@
           <div class="card-body">
               <h2>Pending</h2>
                 <div class="row">
-                  <% if current_user.artwork_bookings.where(status: "pending").empty? %>
+                  <% if current_user.bookings.where(status: "pending").empty? %>
                     <div class="col-4">
                     <p><em>Nothing to show</em></p>
                     </div>
@@ -71,7 +71,7 @@
           <div class="card-body">
             <h2>Accepted</h2>
                 <div class="row">
-                  <% if current_user.artwork_bookings.where(status: "Accepted").empty? %>
+                   <% if current_user.bookings.where(status: "Accepted").empty? %>
                     <div class="col-4">
                       <p><em>Nothing to show</em></p>
                     </div>
@@ -122,7 +122,7 @@
           <div class="card-body">
             <h2>Declined</h2>
                 <div class="row">
-                  <% if current_user.artwork_bookings.where(status: "Declined").empty? %>
+                   <% if current_user.bookings.where(status: "Declined").empty? %>
                     <div class="col-4">
                       <p><em>Nothing to show</em></p>
                     </div>
