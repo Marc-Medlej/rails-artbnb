@@ -3,6 +3,16 @@ class ArtworksController < ApplicationController
 
   def index
     @artworks = Artwork.all
+
+    @geo_artworks = Artwork.geocoded
+
+    @markers = @geo_artworks.map do |geo_artwork|
+      {
+        lat: geo_artwork.latitude,
+        lng: geo_artwork.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { artwork: geo_artwork })
+      }
+    end
   end
 
   def show
@@ -10,7 +20,8 @@ class ArtworksController < ApplicationController
     @bookings = @artwork.bookings
     @markers = [{
       lat: @artwork.latitude,
-      lng: @artwork.longitude
+      lng: @artwork.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { artwork: artwork })
     }]
   end
 
