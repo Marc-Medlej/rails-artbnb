@@ -1,27 +1,23 @@
-<div class="d-flex flex-row m-5">
-    <div class="flex-grow-1">
-        <div class="container-show">
-          <h1><strong><%= @artwork.name %></strong></h1>
-        </div>
-
-        <% if @artwork.photo.attached? %>
+<div class="container">
+  <div class="row just">
+    <div class="col-6">
+     <h1><strong><%= @artwork.name.capitalize %></strong></h1>
+      <% if @artwork.photo.attached? %>
           <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
          <% end %>
 
-        <div class="description">
-          <ul>
-            <li><strong>Artist name:</strong> <%=@artwork.artist_name%></li>
-            <li><strong>Description:</strong> <%=@artwork.description%></li>
-            <li><strong>Location: </strong><%=@artwork.location%></li>
-            <li><strong>Price per day: </strong><%=@artwork.price_per_day%> £</li>
-          </ul>
-          <%= link_to 'Back', root_path, class: "class: btn btn-warning" %>
-          <%# <%= link_to 'Request a booking', new_artwork_booking_path(@artwork), class: "class: btn btn-danger" %>
-        </div>
+        <!-- <div class="flex-container"> -->
+            <p><i class="fas fa-user-alt"></i> <%=@artwork.artist_name.capitalize%></p>
+            <p><i class="far fa-address-card"> </i> <%=@artwork.description.capitalize%></p>
+            <p><i class="fas fa-compass"></i> <%=@artwork.location.capitalize%></p>
+            <p><i class="fas fa-pound-sign"></i> <%=@artwork.price_per_day%></p>
+        <!-- </div> -->
     </div>
+  </div>
 
-    <div class="w-25 bd-highlight align-self-center border p-3 bg-light">
 
+    <div class="col-6">
+      <div class="bd-highlight align-self-center border p-3 bg-light">
       <%= simple_form_for Booking.new, url: artwork_bookings_path(@artwork),
         method: :post,
         wrapper_mappings: {
@@ -35,12 +31,20 @@
       <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
       <p>Estimated Price: £<span id="full-price"></span></p>
     </div>
+  </div>
 </div>
 
-<div class="container">
+<div class="left-button">
+  <%= link_to '🔙', root_path, class: "class: btn btn-ligth" %>
+</div>
 
-<div id="map"
+
+
+
+    <div class="col-6">
+      <div id="map"
      class="container"
-     style="width: 600px; height: 400px;"
+     style="width: 100%; height: 400px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
