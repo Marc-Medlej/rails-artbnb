@@ -52,7 +52,6 @@
           </div>
         </div>
       </div>
-    </div>
 
       <div class="card">
         <div class="card-header" id="headingTwo">
@@ -67,32 +66,31 @@
             <h2>Accepted</h2>
                 <div class="row">
                   <% @bookings.each do |booking| %>
-                  <% if booking.status == "Accepted" %>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                      <div class="card-product flex-container space-between m-3 p-3">
-                        <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
-                        <% if booking.artwork.photo.attached? %>
-                          <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
-                        <% end %>
-                        <div class="card-product-infos">
-                          <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
-                          <% if booking.status == "Accepted" %>
-                            <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
-                          <% elsif booking.status == "Declined" %>
-                            <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
-                          <% else %>
-                            <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                    <% if booking.status == "Accepted" %>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="card-product flex-container space-between m-3 p-3">
+                          <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
+                          <% if booking.artwork.photo.attached? %>
+                            <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
                           <% end %>
-                          <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
-                          <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
-                          <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                          <div class="card-product-infos">
+                            <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
+                            <% if booking.status == "Accepted" %>
+                              <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
+                            <% elsif booking.status == "Declined" %>
+                              <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
+                            <% else %>
+                              <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                            <% end %>
+                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
+                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
+                            <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                          </div>
                         </div>
-                      </div>
-                  </div>
-                <% end %>
-                 <% end %>
-              </div>
-          </div>
+                    </div>
+                    <% end %>
+                  <% end %>
+                </div>
           </div>
         </div>
       </div>
@@ -110,32 +108,31 @@
             <h2>Declined</h2>
                 <div class="row">
                   <% @bookings.each do |booking| %>
-                  <% if booking.status == "Declined" %>
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                      <div class="card-product flex-container space-between m-3 p-3">
-                        <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
-                        <% if booking.artwork.photo.attached? %>
-                          <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
-                        <% end %>
-                        <div class="card-product-infos">
-                          <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
-                          <% if booking.status == "Accepted" %>
-                            <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
-                          <% elsif booking.status == "Declined" %>
-                            <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
-                          <% else %>
-                            <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                    <% if booking.status == "Declined" %>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                        <div class="card-product flex-container space-between m-3 p-3">
+                          <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
+                          <% if booking.artwork.photo.attached? %>
+                            <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path booking.artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
                           <% end %>
-                          <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
-                          <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
-                          <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                          <div class="card-product-infos">
+                            <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
+                            <% if booking.status == "Accepted" %>
+                              <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
+                            <% elsif booking.status == "Declined" %>
+                              <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
+                            <% else %>
+                              <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                            <% end %>
+                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
+                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
+                            <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                          </div>
                         </div>
                       </div>
-                  </div>
-                <% end %>
+                   <% end %>
                   <% end %>
               </div>
-          </div>
           </div>
         </div>
       </div>
