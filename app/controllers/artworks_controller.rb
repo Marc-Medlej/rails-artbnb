@@ -2,9 +2,14 @@ class ArtworksController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    @artworks = Artwork.all
 
-    @geo_artworks = Artwork.geocoded
+    if params[:query].present?
+      @artworks = Artwork.where("location @@ :query OR artist_name @@ :query", query: "%#{params[:query]}%")
+    else
+      @artworks = Artwork.all
+    end
+
+    @geo_artworks = @artworks.geocoded
 
     @markers = @geo_artworks.map do |geo_artwork|
       {
