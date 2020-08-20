@@ -3,7 +3,7 @@
         <div class="container-show">
           <h1><strong><%= @artwork.name %></strong></h1>
         </div>
-  
+
         <% if @artwork.photo.attached? %>
           <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path @artwork.photo.key, height: 250, width: 250, crop: :fill  %>)"></div>
          <% end %>
@@ -31,7 +31,7 @@
         <%= f.input :time_end, label: "To", input_html: { class: "mb-2 mr-sm-2" } %>
         <%= f.button :submit, class: "btn-primary mb-2" %>
       <% end %>
-      
+
       <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
       <p>Estimated Price: £<span id="full-price"></span></p>
     </div>
