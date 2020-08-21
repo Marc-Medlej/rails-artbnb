@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 add-padding">
       <div class="bd-highlight align-self-center border p-3 bg-light">
         <%= simple_form_for Booking.new, url: artwork_bookings_path(@artwork),
           method: :post,
@@ -45,11 +45,11 @@
 </div>
 
 <div class="container">
-  <div class="row justify-content-between">
-    <div class="col-5">
+  <div class="row justify-content-end">
+    <div class="col-12">
       <div id="map"
       class="container"
-      style="width: 100%; height: 400px;"
+      style="width: 100%; height: 350px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>

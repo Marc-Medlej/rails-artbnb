@@ -42,7 +42,7 @@ file = URI.open('https://media.overstockart.com/optimized/cache/data/product_ima
   artworks = Artwork.new(
     name: "Sea of Galilee",
     artist_name: "Rembrandt",
-    description: " The Storm on the Sea of Galilee.",
+    description: "The Storm on the Sea of Galilee.",
     location: "United States, Boston",
     price_per_day: 30,
     user: User.first
