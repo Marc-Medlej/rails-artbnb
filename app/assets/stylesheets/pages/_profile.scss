@@ -11,29 +11,66 @@
 }
 
 .background-red {
-  background-color: red;
+  background-color: $peach;
   padding: 4px;
 }
 .background-yellow {
-  background-color: yellow;
+  background-color: $orange;
   padding: 4px;
 }
 .background-green {
-  background-color: green;
+  background-color: $yellow;
   padding: 4px;
 }
 
 .create-button-delete {
-  background-color: $peach;
-  border-radius: 25%;
-  color: white;
+  font-size: 20px;
+  color: black;
   &:hover {
-  background-color: #FFC94B;
+  color: $peach;
   }
 }
 
 a.create-button-delete {
+  padding-left: 4px;
+  padding-right: 4px;
   text-decoration: none;
   color:black;
   z-index: 2;
   }
+
+.profile-nav {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 12px;
+  font-size: 24px;
+}
+
+.profile-nav a {
+  text-decoration: none;
+  color: white;
+  background-color: $orange;
+  border-radius: 4px;
+}
+
+.profile-nav-item:hover {
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px $yellow;
+}
+
+.button-accept{
+  background-color: $yellow;
+  color: white;
+  &:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+}
+
+.button-decline{
+  background-color: $grey;
+  color: white;
+  &:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+}
