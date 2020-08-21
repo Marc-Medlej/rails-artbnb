@@ -1,5 +1,9 @@
 // Specific CSS for your home-page
 
+$grey: #F9FAF4;
+$navy: #4A6163;
+$orange: #F9A66C;
+$yellow: #FFC94B;
 $peach: #F17A7E;
 
 .nav-bar {
@@ -17,16 +21,19 @@ $peach: #F17A7E;
 
 .create-button {
   background-color: $peach;
+  padding: 8px;
   border-radius: 4px;
   color: white;
+  border: none;
   &:hover {
-  background-color: #FFC94B;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
   }
 }
 
 a.create-button {
   text-decoration: none;
-  color:black;
+  color: white;
   z-index: 2;
   }
 
@@ -121,4 +128,24 @@ a.create-button {
 .container-logo {
   justify-content: center;
   text-align: center;
+}
+
+.home-nav {
+  display: flex-start;
+  padding: 12px;
+  font-size: 24px;
+}
+
+.home-nav a {
+  text-decoration: none;
+  color: white;
+  background-color: $orange;
+  border-radius: 4px;
+  margin: 4px;
+}
+
+.home-nav-item:hover {
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 0 10px $yellow;
 }
