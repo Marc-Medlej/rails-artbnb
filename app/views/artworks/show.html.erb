@@ -1,8 +1,8 @@
 <div class="row">
   <div class="left-button">
-    <%= link_to 'Back', root_path, class: "ml-3" %>
+    <%= link_to '🔙', root_path, class: "ml-3" %>
   </div>
-</div> 
+</div>
 
 <div class="container">
   <div class="row justify-content-between">
@@ -13,14 +13,14 @@
             <% if @artwork.photo.attached? %>
               <%= cl_image_tag @artwork.photo.key, height: 200, width: 150, crop: :fill %>
             <% end %>
-          </div>  
+          </div>
 
           <div class="ml-2">
             <p><i class="fas fa-user-alt"></i> <%=@artwork.artist_name.capitalize%></p>
             <p><i class="far fa-address-card"> </i> <%=@artwork.description.capitalize%></p>
             <p><i class="fas fa-compass"></i> <%=@artwork.location.capitalize%></p>
-            <p><i class="fas fa-pound-sign"></i> <%=@artwork.price_per_day%></p>          
-          </div>     
+            <p><i class="fas fa-pound-sign"></i> <%=@artwork.price_per_day%></p>
+          </div>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
           } do |f| %>
             <%= f.input :time_start, label: "Pick-up",  as: :string, required: true, input_html: {class: "datepicker"} %>
             <%= f.input :time_end, label: "Drop-off", as: :string, required: true, input_html: {class: "datepicker"} %>
-            <%= f.button :submit, class: "btn-primary mb-2" %>
+            <%= f.button :submit, class: "create-button p-1" %>
           <% end %>
 
         <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
