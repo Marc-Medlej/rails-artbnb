@@ -2,25 +2,25 @@
   <div class="left-button">
     <%= link_to 'Back', root_path, class: "ml-3" %>
   </div>
-</div> 
+</div>
 
 <div class="container">
   <div class="row justify-content-between">
     <div class="col-6">
         <h3><strong><%= @artwork.name.capitalize %></strong></h3>
-        <div class="d-flex">
+        <div class="d-flex mb-3">
           <div>
             <% if @artwork.photo.attached? %>
-              <%= cl_image_tag @artwork.photo.key, height: 200, width: 150, crop: :fill %>
+              <%= cl_image_tag @artwork.photo.key, height: 400, width: 300,crop: :fill %>
             <% end %>
-          </div>  
+          </div>
 
           <div class="ml-2">
             <p><i class="fas fa-user-alt"></i> <%=@artwork.artist_name.capitalize%></p>
             <p><i class="far fa-address-card"> </i> <%=@artwork.description.capitalize%></p>
             <p><i class="fas fa-compass"></i> <%=@artwork.location.capitalize%></p>
-            <p><i class="fas fa-pound-sign"></i> <%=@artwork.price_per_day%></p>          
-          </div>     
+            <p><i class="fas fa-pound-sign"></i> <%=@artwork.price_per_day%></p>
+          </div>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
           wrapper_mappings: {
           boolean: :inline_boolean
           } do |f| %>
-            <%= f.input :time_start, label: "Pick-up",  as: :string, required: true, input_html: {class: "datepicker"} %>
+            <%= f.input :time_start, label: "Pick-up", as: :string, required: true, input_html: {class: "datepicker", type: :date} %>
             <%= f.input :time_end, label: "Drop-off", as: :string, required: true, input_html: {class: "datepicker"} %>
             <%= f.button :submit, class: "btn-primary mb-2" %>
           <% end %>
