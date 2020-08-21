@@ -95,7 +95,7 @@ file = URI.open('https://sothebys-com.brightspotcdn.com/3f/5a/b8b06f534d3890eda8
     name: "Las meninas",
     artist_name: "Diego velázquez",
     description: "The prado museum",
-    location: "Madrid, Museo Nacional del Prado",
+    location: "London, Oxford Street",
     price_per_day: 25,
     user: User.first
   )
