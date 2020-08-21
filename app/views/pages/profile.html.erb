@@ -20,7 +20,7 @@
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
-              <h2>Pending</h2>
+
                 <div class="row">
                   <% if current_user.bookings.where(status: "pending").empty? %>
                     <div class="col-4">
@@ -71,7 +71,7 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
-            <h2>Accepted</h2>
+
                 <div class="row">
                    <% if current_user.bookings.where(status: "Accepted").empty? %>
                     <div class="col-4">
@@ -122,7 +122,7 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
-            <h2>Declined</h2>
+
                 <div class="row">
                    <% if current_user.bookings.where(status: "Declined").empty? %>
                     <div class="col-4">
