@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     @booking.status = "pending"
     @booking.calculated_price = @artwork.price_per_day * (@booking.time_end-@booking.time_start)
     @booking.save
-    redirect_to artwork_path(@artwork)
+    redirect_to profile_path
   end
 
   # def edit
@@ -21,12 +21,18 @@ class BookingsController < ApplicationController
   # end
 
   def update
-    @booking = Booking.find(params[:id])  
+    @booking = Booking.find(params[:id])
     @booking.update({'status': params[:status]})
 
     @artwork = @booking.artwork
 
-    redirect_to artwork_path(@artwork)
+    redirect_to profile_path
+  end
+
+  def destroy
+    @booking = @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to profile_path
   end
 
   private

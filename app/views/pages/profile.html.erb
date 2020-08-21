@@ -1,85 +1,246 @@
-<div class="conatiner justify-content-start p-2">
-  <div class="row m-2">
-    <div class="col-2">
-    </div>
-    <div class="col-8">
-      <h1 class="text-center p-2">My Profile</h1>
-    </div>
-  <div class="col-2 create-button text-center">
-      <%= link_to "Add artwork for hire", new_artwork_path, class: "btn"%>
-    </div>
-  </div>
+<div class="flex-container center pt-3">
+  <h1>My Profile</h1>
 </div>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">My Bookings</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">My Artwork</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-<div class="container m-3 p-2">
-  <h2>My Bookings</h2>
-    <div class="row">
-      <% @bookings.each do |booking| %>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-          <div class="card-product flex-container space-between m-3 p-3">
-              <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
-            <img src="https://source.unsplash.com/random"/>
-              <div class="card-product-infos">
-                <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
-                <% if booking.status == "Accepted" %>
-                  <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
-                <% elsif booking.status == "Declined" %>
-                  <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
-                <% else %>
-                  <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
-                <% end %>
-                <p><i class="fas fa-calendar-times"></i> <%= booking.time_start %></p>
-                <p><i class="far fa-calendar-times"></i> <%= booking.time_end %></p>
-                <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Pending
+            </button>
+          </h5>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+              <h2>Pending</h2>
+                <div class="row">
+                  <% if current_user.bookings.where(status: "pending").empty? %>
+                    <div class="col-4">
+                    <p><em>Nothing to show</em></p>
+                    </div>
+                  <% else %>
+                  <% @bookings.each do |booking| %>
+                  <% if booking.status == "pending" %>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                      <div class="card-product flex-container space-between m-3 p-3">
+                        <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
+                        <% if booking.artwork.photo.attached? %>
+                          <%= cl_image_tag booking.artwork.photo.key, height: 300, width: 400, crop: :fill %>
+                        <% end %>
+                        <div class="card-product-infos">
+                          <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
+                          <% if booking.status == "Accepted" %>
+                            <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
+                          <% elsif booking.status == "Declined" %>
+                            <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
+                          <% else %>
+                            <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                          <% end %>
+                          <p><i class="fas fa-calendar-times"></i> <%= booking.time_start.strftime("%d/%m/%Y") %></p>
+                          <p><i class="far fa-calendar-times"></i> <%= booking.time_end.strftime("%d/%m/%Y") %></p>
+                          <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                        </div>
+                      </div>
+                    </div>
+                   <% end %>
+                   <% end %>
+                  <% end %>
+                </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Accepted
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <h2>Accepted</h2>
+                <div class="row">
+                   <% if current_user.bookings.where(status: "Accepted").empty? %>
+                    <div class="col-4">
+                      <p><em>Nothing to show</em></p>
+                    </div>
+                  <% else %>
+                  <% @bookings.each do |booking| %>
+                    <% if booking.status == "Accepted" %>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                        <div class="card-product flex-container space-between m-3 p-3">
+                          <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
+                          <% if booking.artwork.photo.attached? %>
+                            <%= cl_image_tag booking.artwork.photo.key, height: 300, width: 400, crop: :fill %>
+                          <% end %>
+                          <div class="card-product-infos">
+                            <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
+                            <% if booking.status == "Accepted" %>
+                              <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
+                            <% elsif booking.status == "Declined" %>
+                              <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
+                            <% else %>
+                              <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                            <% end %>
+                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start.strftime("%d/%m/%Y") %></p>
+                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end.strftime("%d/%m/%Y") %></p>
+                            <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                          </div>
+                          <%= link_to booking_path(booking), method: :delete, data: { confirm: "Delete #{booking.artwork.name.capitalize}?" }, class: "create-button-delete p-2" do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
+                        </div>
+                    </div>
+                    <% end %>
+                  <% end %>
+                  <% end %>
+                </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Declined
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            <h2>Declined</h2>
+                <div class="row">
+                   <% if current_user.bookings.where(status: "Declined").empty? %>
+                    <div class="col-4">
+                      <p><em>Nothing to show</em></p>
+                    </div>
+                  <% else %>
+                  <% @bookings.each do |booking| %>
+                    <% if booking.status == "Declined" %>
+                      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                        <div class="card-product flex-container space-between m-3 p-3">
+                          <%= link_to "", artwork_path(booking.artwork), class: "card-link"%>
+                          <% if booking.artwork.photo.attached? %>
+                             <%= cl_image_tag booking.artwork.photo.key, height: 300, width: 400, crop: :fill %>
+                          <% end %>
+                          <div class="card-product-infos">
+                            <p><i class="fas fa-palette"></i></i> <%= booking.artwork.name.capitalize %></p>
+                            <% if booking.status == "Accepted" %>
+                              <p class="background-green"><i class="fas fa-check-circle"></i> <%= booking.status %></p>
+                            <% elsif booking.status == "Declined" %>
+                              <p class="background-red"><i class="fas fa-times"></i> <%= booking.status %></p>
+                            <% else %>
+                              <p class="background-yellow"><i class="fas fa-question"></i> <%= booking.status.capitalize %></p>
+                            <% end %>
+                            <p><i class="fas fa-calendar-times"></i> <%= booking.time_start.strftime("%d/%m/%Y") %></p>
+                            <p><i class="far fa-calendar-times"></i> <%= booking.time_end.strftime("%d/%m/%Y") %></p>
+                            <p><i class="fas fa-pound-sign"></i> <%= booking.calculated_price %></p>
+                          </div>
+                          <%= link_to booking_path(booking), method: :delete, data: { confirm: "Delete #{booking.artwork.name.capitalize}?" }, class: "create-button-delete p-2" do %>
+                            <i class="fas fa-trash-alt"></i>
+                          <% end %>
+                        </div>
+                      </div>
+                   <% end %>
+                  <% end %>
+                  <% end %>
               </div>
           </div>
         </div>
-      <% end %>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="container m-3 p-2">
-  <h2>My Artwork</h2>
-  <div class="row">
-    <% @artworks.each do |artwork| %>
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <div class="card-product flex-container space-between m-3 p-3">
-          <%#= link_to "", artwork_path(artwork), class: "card-link"%>
-          <img src="https://source.unsplash.com/random"/>
-            <div class="card-product-infos">
-              <h2> <%= artwork.name.capitalize %> </h2>
-              <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name.capitalize %></p>
-              <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
-              <% artwork.bookings.each do |booking| %>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="container mt-4">
+      <h2>Pending Requests for Artwork</h2>
+        <div class="row">
+
+          <% if current_user.artwork_bookings.where(status: "pending").empty? %>
+          <div class="col-4">
+          <p><em>No pending requests</em></p>
+          </div>
+          <% else %>
+            <% current_user.artwork_bookings.each do |booking| %>
               <% if booking.status == "pending" %>
-                <button type="button" class="create-button" data-toggle="modal" data-target="#exampleModal">
-                  Pending Request
-                </button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Pending Request</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                  <div class="card-product flex-container space-between p-3 m-3">
+                    <%#= link_to "", artwork_path(artwork), class: "card-link"%>
+                    <% if booking.artwork.photo.attached? %>
+                    <%= cl_image_tag booking.artwork.photo.key, height: 300, width: 400, crop: :fill %>
+                  <% end %>
+                      <div class="card-product-infos">
+                        <p> User: <%= booking.user.first_name %> <%= booking.user.last_name %> </p>
+                        <p> From: <%= booking.time_start %> Until: <%= booking.time_end %> </p>
+                        <!-- <p> Payment: £<%#= booking.calculated_price %> </p> -->
+                        <button type="button" class="create-button" data-toggle="modal" data-target="#exampleModal">
+                          Pending Request
                         </button>
-                    </div>
-                    <div class="modal-body">
-                      <li> User: <%= booking.user.first_name %> <%= booking.user.last_name %> </li>
-                      <li> From: <%= booking.time_start %> Until: <%= booking.time_end %> </li>
-                      <li> Payment: £<%= booking.calculated_price %> </li>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= link_to "Decline", booking_path(booking, status: "Declined"), method: :patch %></button>
-                      <button type="button" class="btn btn-primary"><%= link_to "Accept", booking_path(booking, status: "Accepted"), method: :patch %></button>
-                    </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Pending Request</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                              </div>
+                            <div class="modal-body">
+                              <li> User: <%= booking.user.first_name %> <%= booking.user.last_name %> </li>
+                              <li> From: <%= booking.time_start.strftime("%d/%m/%Y") %> Until: <%= booking.time_end.strftime("%d/%m/%Y") %> </li>
+                              <li> Payment: £<%= booking.calculated_price %> </li>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= link_to "Decline", booking_path(booking, status: "Declined"), method: :patch %></button>
+                              <button type="button" class="btn btn-primary"><%= link_to "Accept", booking_path(booking, status: "Accepted"), method: :patch %></button>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                   </div>
                 </div>
-              </div>
+
               <% end %>
-              <% end %>
-            </div>
+            <% end %>
+          <% end %>
         </div>
+
+    <h2>My Artwork</h2>
+      <div class="row">
+        <% @artworks.each do |artwork| %>
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                <div class="card-product flex-container space-between m-3 p-3">
+                  <%= link_to "", artwork_path(artwork), class: "card-link"%>
+                    <% if artwork.photo.attached? %>
+                    <%= cl_image_tag artwork.photo.key, height: 300, width: 400, crop: :fill %>
+                  <% end %>
+                      <div class="card-product-infos">
+                         <%= link_to artwork.name, artwork_path(artwork) %>
+                        <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
+                        <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
+                        <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
+                      </div>
+                       <%= link_to artwork_path(artwork), method: :delete, data: { confirm: "Delete #{artwork.name.capitalize}?" }, class: "create-button-delete p-2" do %>
+                      <i class="fas fa-trash-alt"></i>
+                      <% end %>
+
+                </div>
+              </div>
+        <% end %>
       </div>
-  <% end %>
-  </div>
+    </div>
+</div>
+</div>

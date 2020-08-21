@@ -1,23 +1,57 @@
-<div class="container-show">
-  <h1><strong><%= @artwork.name %></strong></h1>
+<div class="row">
+  <div class="left-button">
+    <%= link_to 'Back', root_path, class: "ml-3" %>
+  </div>
+</div> 
+
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-6">
+        <h3><strong><%= @artwork.name.capitalize %></strong></h3>
+        <div class="d-flex">
+          <div>
+            <% if @artwork.photo.attached? %>
+              <%= cl_image_tag @artwork.photo.key, height: 200, width: 150, crop: :fill %>
+            <% end %>
+          </div>  
+
+          <div class="ml-2">
+            <p><i class="fas fa-user-alt"></i> <%=@artwork.artist_name.capitalize%></p>
+            <p><i class="far fa-address-card"> </i> <%=@artwork.description.capitalize%></p>
+            <p><i class="fas fa-compass"></i> <%=@artwork.location.capitalize%></p>
+            <p><i class="fas fa-pound-sign"></i> <%=@artwork.price_per_day%></p>          
+          </div>     
+        </div>
+    </div>
+
+    <div class="col-4">
+      <div class="bd-highlight align-self-center border p-3 bg-light">
+        <%= simple_form_for Booking.new, url: artwork_bookings_path(@artwork),
+          method: :post,
+          name: :booking_form,
+          wrapper_mappings: {
+          boolean: :inline_boolean
+          } do |f| %>
+            <%= f.input :time_start, label: "Pick-up",  as: :string, required: true, input_html: {class: "datepicker"} %>
+            <%= f.input :time_end, label: "Drop-off", as: :string, required: true, input_html: {class: "datepicker"} %>
+            <%= f.button :submit, class: "btn-primary mb-2" %>
+          <% end %>
+
+        <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
+        <p>Estimated Price: £<span id="full-price"></span></p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= image_path 'airbnb'%>)">
+<div class="container">
+  <div class="row justify-content-between">
+    <div class="col-5">
+      <div id="map"
+      class="container"
+      style="width: 100%; height: 400px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+  </div>
 </div>
-
-<div class="description">
-  <ul>
-    <li><strong>Artist name:</strong> <%=@artwork.artist_name%></li>
-    <li><strong>Description:</strong> <%=@artwork.description%></li>
-    <li><strong>Location: </strong><%=@artwork.location%></li>
-    <li><strong>Price per day: </strong><%=@artwork.price_per_day%> £</li>
-  </ul>
-  <%= link_to 'Back', root_path, class: "class: btn btn-warning" %>
-  <%= link_to 'Request a booking', new_artwork_booking_path(@artwork), class: "class: btn btn-danger" %>
-</div>
-
-<% @bookings.each do |booking|  %>
-<li> user: <%= booking.user.first_name %> <%= booking.user.last_name %> <%= link_to "Accept", booking_path(booking, status: "Accepted"), method: :patch %> <%= link_to "Decline", booking_path(booking, status: "Declined"), method: :patch %>
-<% end %>
-<!-- <%= link_to 'Back', root_path %> -->
-<%# , time_start: booking.time_start, time_end: booking.time_end, calculated_price: booking.calculated_price %>

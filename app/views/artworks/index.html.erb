@@ -8,22 +8,63 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="row">
-    <% @artworks.each do |artwork| %>
-      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-        <div class="card-product flex-container space-between m-3 p-3">
-          <%= link_to "", artwork_path(artwork), class: "card-link"%>
-          <img src="https://source.unsplash.com/random"/>
-            <div class="card-product-infos">
-              <h2> <%= artwork.name %> </h2>
-              <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
-              <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
-              <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
-            </div>
-           <%= link_to "Book", new_artwork_booking_path(artwork), class: "create-button p-1" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+<div class="container justify-content-center">
+<%= form_tag root_path, class: "search-tab",  method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "search-field justify-content-center",
+    placeholder: "Search by location or artist"
+  %>
+  <%= button_tag :submit, class: "btn btn-primary btn-sm" do %>
+    <i class="fas fa-search"></i>
+  <% end %>
+<% end %>
 </div>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="fas fa-list"></i></a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="fas fa-map-marked-alt"></i></a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="container">
+      <div class="row">
+        <% @artworks.each do |artwork| %>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card-product flex-container space-between m-3 p-3">
+                  <%= link_to "", artwork_path(artwork), class: "card-link"%>
+                  <% if artwork.photo.attached? %>
+                    <%= cl_image_tag artwork.photo.key, height: 300, width: 400, crop: :fill %>
+                  <% end %>
+                <div class="card-product-infos">
+                  <%= link_to artwork.name, artwork_path(artwork) %>
+                  <p><i class="fas fa-user-alt"></i> <%= artwork.artist_name %></p>
+                  <p><i class="fas fa-pound-sign"></i> <%= artwork.price_per_day %> per day</p>
+                  <p><i class="fas fa-compass"></i> <%= artwork.location %></p>
+                </div>
+              <%= link_to "Book", artwork_path(artwork), class: "create-button p-1" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+    <div id="map"
+      style="width: 100%; height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+
+  </div>
+
+</div>
+
+
+
