@@ -1,9 +1,5 @@
 .left-button {
-  // position: absolute;
-  // top:22%;
-  // left: 0;
-  // width: 120px;
-  // transform: translateY(-50%);
+  // padding-top: 40px;
   margin-left: 8px;
   color: white;
 }
@@ -19,11 +15,16 @@
   margin: 0 auto;
 }
 .space {
-
    margin-bottom: 50px;
-
-
-
 }
 
+.add-padding {
+  padding-top: 40px;
+}
+
+#map {
+  padding: 10px;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+}
 
