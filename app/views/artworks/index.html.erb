@@ -1,14 +1,44 @@
-<div class="conatinaplier justify-content-start p-2">
+<div class="container justify-content-start p-2">
   <div class="row m-2">
     <div class="col-2">
     </div>
     <div class="col-8">
-      <p class="text-center p-2">Short-term hire of fabulous art</p>
+      <p class="text-center p-0 m-0">Short-term hire of fabulous art</p>
     </div>
   </div>
 </div>
 
-<div class="container justify-content-center">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%=image_tag("Un_bar_aux_Folies-Bergère.jpg", height: 700, width: 1800, crop: :fill  )%> 
+    </div>
+    <div class="carousel-item">
+      <%=image_tag("Las-Meninas--009.jpg", height: 700, width: 1800, crop: :fill  )%>
+    </div>
+    <div class="carousel-item">
+      <%=image_tag("bal du moulin.jpeg", height: 700, width: 1800, crop: :fill  )%>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  
+  
+
+
+<div class="container justify-content-center mt-3">
 <%= form_tag root_path, class: "search-tab",  method: :get do %>
   <%= text_field_tag :query,
     params[:query],
@@ -61,9 +91,7 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-
-  </div>
-
+    
 </div>
 
 
