@@ -6,12 +6,12 @@
 
 <div class="container">
   <div class="row justify-content-between">
-    <div class="col-6">
+    <div class="col-8">
         <h3><strong><%= @artwork.name.capitalize %></strong></h3>
         <div class="d-flex mb-3">
           <div>
             <% if @artwork.photo.attached? %>
-              <%= cl_image_tag @artwork.photo.key, height: 400, width: 300,crop: :fill %>
+              <%= cl_image_tag @artwork.photo.key, height: 350, width: 300,crop: :fill %>
             <% end %>
           </div>
 
@@ -38,7 +38,7 @@
           <% end %>
 
         <span id="daily-price" style="display:none"><%= @artwork.price_per_day %></span>
-        <p>Estimated Price: £<span id="full-price"></span></p>
+        <p class= "mt-3 mb-0">Estimated Price: £<span id="full-price"></span></p>
       </div>
     </div>
   </div>
