@@ -30,12 +30,21 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 import { calculateBookingPrice } from '../components/automatic_price';
 import { initMapbox } from '../plugins/init_mapbox';
-import "../plugins/flatpickr"
+import flatpickr from "flatpickr";
+
+
+
 
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  calculateBookingPrice();
   initMapbox();
+
+  const form = document.forms.new_booking;
+
+  if (form) {
+    calculateBookingPrice(form);
+    flatpickr(".datepicker", {});
+  }
 });
