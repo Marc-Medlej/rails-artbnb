@@ -32,7 +32,7 @@
           wrapper_mappings: {
           boolean: :inline_boolean
           } do |f| %>
-            <%= f.input :time_start, label: "Pick-up", as: :string, required: true, input_html: {class: "datepicker", type: :date} %>
+            <%= f.input :time_start, label: "Pick-up", as: :string, required: true, input_html: {class: "datepicker"} %>
             <%= f.input :time_end, label: "Drop-off", as: :string, required: true, input_html: {class: "datepicker"} %>
             <%= f.button :submit, class: "create-button p-1" %>
           <% end %>
