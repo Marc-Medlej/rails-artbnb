@@ -16,8 +16,8 @@ artworks = Artwork.new(
 
     name: "The Night Watch",
     artist_name: "Rembrandt",
-    description: "Most famous Dutch Golden Age paintings.",
-    location: "London",
+    description: "Dutch Golden Age paintings",
+    location: "Amsterdam, Netherlands",
     price_per_day: 50,
     user: User.first
   )
@@ -29,8 +29,8 @@ file = URI.open('https://i.etsystatic.com/9356362/r/il/05b811/812878753/il_1588x
   artworks = Artwork.new(
     name: "The Swing",
     artist_name: "Jean-Honoré Fragonard",
-    description: "Also known as The Happy Accidents of the Swing.",
-    location: "London",
+    description: "Accidents of the Swing",
+    location: "London, Manchester Square",
     price_per_day: 35,
     user: User.first
   )
@@ -43,7 +43,7 @@ file = URI.open('https://media.overstockart.com/optimized/cache/data/product_ima
     name: "Sea of Galilee",
     artist_name: "Rembrandt",
     description: " The Storm on the Sea of Galilee.",
-    location: "Amsterdam",
+    location: "United States, Boston",
     price_per_day: 30,
     user: User.first
   )
@@ -55,8 +55,8 @@ file = URI.open('https://c8.alamy.com/comp/H3YTE1/painting-titled-bal-du-moulin-
   artworks = Artwork.new(
     name: "Le Moulin",
     artist_name: "Pierre-Auguste Renoir",
-    description: "Bal du moulin de la Galette.",
-    location: "Paris",
+    description: "Bal du moulin de la Galette",
+    location: "Paris, Musée d'Orsay",
     price_per_day: 40,
     user: User.first
   )
@@ -68,8 +68,8 @@ file = URI.open('https://ae01.alicdn.com/kf/HTB1s0fRXULrK1Rjy0Fjq6zYXFXaO.jpg')
   artworks = Artwork.new(
     name: "Les Demoiselles",
     artist_name: "Pablo Picasso",
-    description: "Created in 1907 by the Spanish artist Pablo Picasso.",
-    location: "New York",
+    description: "Created in 1907 by Picasso",
+    location: "New York, The Museum of Modern Art",
     price_per_day: 30,
     user:  User.first
   )
@@ -81,8 +81,8 @@ file = URI.open('https://ichef.bbci.co.uk/images/ic/1200x675/p02ycl21.jpg')
   artworks = Artwork.new(
     name: "The folies-bergère",
     artist_name: "Edouard Manet",
-    description: "The courtauld gallery.",
-    location: "London",
+    description: "The courtauld gallery",
+    location: "London, Covent Garden",
     price_per_day: 40,
     user: User.first
   )
@@ -94,8 +94,8 @@ file = URI.open('https://sothebys-com.brightspotcdn.com/3f/5a/b8b06f534d3890eda8
   artworks = Artwork.new(
     name: "Las meninas",
     artist_name: "Diego velázquez",
-    description: "The prado museum.",
-    location: "Spain",
+    description: "The prado museum",
+    location: "Madrid, Museo Nacional del Prado",
     price_per_day: 25,
     user: User.first
   )
